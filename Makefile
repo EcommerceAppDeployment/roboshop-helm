@@ -1,2 +1,2 @@
 default:
-	helm install -f . roboshop --values=env-dev/frontend.yml
+	helm install frontend . -f env-dev/frontend.yml
