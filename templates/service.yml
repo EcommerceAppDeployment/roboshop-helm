@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: {{ .Values.appName }}   
 spec:
+  type: {{ .Values.service.type }}
   selector:
     matchLabels:
-      project: roboshop
-      app: {{ .Values.appName }}
+      {{- include "app.labels" . | indent 6}}
   ports:
     - name: http
       protocol: TCP
-      port: 80
-      targetPort: 80
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}

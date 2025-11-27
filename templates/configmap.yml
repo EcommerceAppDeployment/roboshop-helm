@@ -3,8 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.appName }}
   labels:
-    project: roboshop
-    app: {{ .Values.appName }}
+    {{- include "app.labels" . | indent 4}}
 data:
   {{- range $key,$value := .Values.configMapData }}
   {{ $key }} : {{ $value | quote }}
