@@ -6,7 +6,7 @@ spec:
   type: {{ .Values.service.type }}
   selector:
     matchLabels:
-      {{- include "app.labels" . | indent 6}}
+{{ include "app.labels" . | indent 6}}
   ports:
     - name: http
       protocol: TCP
