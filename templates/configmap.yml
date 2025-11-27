@@ -6,5 +6,5 @@ metadata:
     {{- include "app.labels" . | indent 4}}
 data:
   {{- range $key,$value := .Values.configMapData }}
-  {{ $key }} : {{ $value | quote }}
+  {{ $key }}: {{ $value | quote }}
   {{- end }}
