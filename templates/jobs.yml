@@ -15,7 +15,7 @@ spec:
             value: "db/{{ . }}"
         envFrom:
         - configMapRef:
-            name: {{ .Values.appName }}
+            name: {{ $.Values.appName }}
       restartPolicy: Never
     {{- end }}
   backoffLimit: 0
