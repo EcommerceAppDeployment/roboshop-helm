@@ -3,7 +3,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ . }}-schema-job"
+  name: "{{ . | replace ".sql" "" | replace ".js" ""}}-schema-job"
 spec:
   template:
     spec:
