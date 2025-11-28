@@ -1,9 +1,10 @@
 {{ if .Values.schema.enabled }}
 {{- range .Values.schema.jobs }}
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ . | replace ".sql" "" | replace ".js" ""}}-schema-job"
+  name: "{{ $.Values.appName}}-{{ . | replace ".sql" "" | replace ".js" ""}}"
 spec:
   template:
     spec:
