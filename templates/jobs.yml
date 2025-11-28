@@ -1,0 +1,22 @@
+{{ if .Values.schema.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ . Values.appName }}-schema-job"
+spec:
+  template:
+    spec:
+    {{- range .Values.schema.jobs }}
+      containers:
+      - name: "{{ . | replace '.sql' '' | replace '.js' ''}}-job"
+        image: "public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load"
+        env:
+          - name: SCHEMA_FILE
+            value: "db/{{ . }}"
+        envFrom:
+        - configMapRef:
+            name: {{ .Values.appName }}
+      restartPolicy: Never
+    {{- end }}
+  backoffLimit: 0
+{{ end }}
